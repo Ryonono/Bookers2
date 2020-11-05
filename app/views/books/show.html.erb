@@ -33,7 +33,7 @@
 
       <%= render 'error_form', locals: { book: @book } %>
 
-      <%= form_with model:@book, local:true do |f| %>
+      <%= form_with model:Book.new, local:true do |f| %>
 
       <h4>title</h4>
 
