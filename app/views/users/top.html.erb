@@ -1,0 +1,27 @@
+<% if flash[:notice] %>
+  <p style="color: #00ff00;"><%= flash[:notice] %></p>
+<% end %>
+
+<body>
+  <div class="container" style="margin: 0 auto;">
+  <h1 style="font-size: 55px;">Welcome to Bookers !!</h1>
+
+  <div class="message" style="font-size: 15px;">
+  <p>In Bookers,<br><br>
+  you can share and exchange your opinions , impressions , and emotions<br><br>
+  about various books!</p>
+  </div>
+
+ <div class="btn-wrapper">
+      <tr>
+        <%if user_signed_in? %>
+          <td><%= link_to "Log in", user_path(current_user), class: "btn btn-info col-xs-10" %></td> <br>
+          <td><%= link_to "Sign Up", user_path(current_user), class: "btn btn-success green; col-xs-10" %></td>
+        <% else %>
+          <td><%= link_to "Log in", new_user_session_path,  class: "btn btn-info col-xs-10" %></td> <br>
+          <td><%= link_to "Sign Up", new_user_registration_path,  class: "btn btn-success col-xs-10" %></td>
+        <% end %>
+      </tr>
+  </div>
+</div>
+</body>

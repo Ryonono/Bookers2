@@ -1,0 +1,39 @@
+<div class="container">
+
+
+        <h1>Editing Book</h1>
+
+        <%= form_with model:@book, local:true do |f| %>
+        <%= render 'error_form', locals: { book: @book } %>
+
+    <div class="row">
+
+            <h4>title</h4>
+
+            <%= f.text_field :title, class: "col-xs-12" %>
+            <br>
+
+    </div>
+    <div class="row">
+
+            <h4>opinion</h4>
+
+            <%= f.text_area :body, class: "col-xs-12" %>
+
+            <br>
+
+    </div>
+    <div class="row">
+
+            <br>
+            <%= f.submit 'Update Book', class: "col-xs-12 btn btn-success" %>
+
+            <br>
+
+    </div>
+<hr>
+        <%= link_to "Show", book_path(@book) %>
+        <%= link_to "Back", books_path %>
+
+        <% end %>
+</div>
