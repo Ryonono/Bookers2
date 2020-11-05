@@ -7,46 +7,52 @@
   <div class="container">  <!-- この行を追加 -->
   <div class="row">      <!-- この行を追加 -->
   <div class="col-xs-3">
+
     <h1>User info</h1>
       <!--後で付け加える-->
-      <p>
-        <strong>Image</strong>
-      </p>
+        <br>
         <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %>
+        <br><br>
         <table class="table">
             <tbody>
               <tr>
           	  <th>name</th>
-          	  <!--いったん@usersにしているが、おそらくこのままだとうまく出力されない-->
           	  <th><%= @user.name %></th>
             </tr>
-        <tr>
-          	  <th>introduction</th>
-          	  <th><%= @user.introduction %></th>
-            </tr>
-            <!--READMEにいったんintroductionの部分を移動させてある-->
+              <tr>
+            	  <th>introduction</th>
+            	  <th><%= @user.introduction %></th>
+              </tr>
             </tbody>
-       </table>
+         </table>
 
         <% if @user == current_user %>
-          <p><%= link_to "Profile Edit", edit_user_path(@user), class: "pull-right" %></p>
+          <p><%= link_to "Profile Edit", edit_user_path(@user), class: "pull-right col-xs-12 btn btn-default glyphicon glyphicon-wrench" %></p>
+        <% else %>
+          <p><%= link_to "Profile", user_path(@user), class: "pull-right col-xs-12 btn btn-default glyphicon glyphicon-tasks" %></p>
         <% end %>
 
-      <h3>New book</h3>
-      <!--もしかしたらこの部分を変えないといけないのかも-->
-      <%= render 'error_form', locals: { book: @book } %>
+     <br>
+      <h1>New book</h1>
 
+      <%= render 'error_form', locals: { book: @book } %>
       <%= form_with model:@book, local:true do |f| %>
 
-      <h4>title</h4>
 
-      <%= f.text_field :title %>
+      <h4>Title</h4>
+      <div class="title">
+      <%= f.text_field :title, class: "col-xs-12 pull-right" %>
+      </div>
+      <br>
 
-      <h4>opinion</h4>
+      <h4>Opinion</h4>
+      <div class="opinion">
+      <%= f.text_area :body, class: "col-xs-12 pull-right" %><br>
+      </div>
 
-      <%= f.text_area :body %><br>
-
-      <%= f.submit 'Create Book' %>
+      <div class="create" style="padding-top: 20px;">
+      <%= f.submit 'Create Book', class: "col-xs-12 pull-right btn btn-primary" %>
+      </div>
 
       <% end %>
 
@@ -67,7 +73,7 @@
   <tr>
     <td>
     <%= link_to user_path(@user) do %>
-    <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "20x20" %>
+    <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %>
     <% end %>
     </td>
     <td>
